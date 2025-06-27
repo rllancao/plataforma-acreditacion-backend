@@ -1,0 +1,18 @@
+version: "3.9"           # opcional, pero recomendable
+
+services:
+  database:
+    image: postgres:16    # usa una etiqueta fija para reproducibilidad
+    container_name: plataforma_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db_stage
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:                # ← exactamente el mismo nombre
